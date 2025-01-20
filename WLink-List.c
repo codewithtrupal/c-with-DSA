@@ -14,6 +14,7 @@ void display();
 void insatbeg(int val);
 void insatend(int val);
 void delnode(int val);
+void  insaft(int val);
 
 int main()
 {
@@ -27,8 +28,9 @@ int main()
         printf("\n 2. display");
         printf("\n 3. insert at beginig");
         printf("\n 4. insert at end");
-        printf("\n 5. delete");
-        printf("\n 6. Exsit");
+        printf("\n 5. insert after");
+        printf("\n 6. delete");
+        printf("\n 7. Exsit");
         printf("\n|--------------------|");
         printf("\nEnter the your chioce : ");
         scanf("%d", &ch);
@@ -62,11 +64,19 @@ int main()
         {
             printf("\n Enter the value : ");
             scanf("%d", &val);
-            delnode(val);
+            insaft(val);
         }
         
 
         else if (ch == 6)
+        {
+            printf("\n Enter the value : ");
+            scanf("%d", &val);
+            delnode(val);
+        }
+        
+
+        else if (ch == 7)
         {
             printf("\n Good Bye ");
             break;;
@@ -127,7 +137,7 @@ void display()
 
 void insatbeg(int val)
 {
-    struct node *curr, *new;
+    struct node *new;
 
     new = (struct node *)malloc(sizeof(struct node));
 
@@ -212,3 +222,41 @@ void delnode(int val)
     free(curr);
 }
 
+void insaft(int val)
+{
+    struct node *new, *curr;
+
+    if(first == NULL)
+    {
+        printf("\n WLink-List is empty");
+        return;
+    }
+
+    new = (struct node*) malloc (sizeof(struct node));
+
+    new -> data = val;
+    new -> rptr = NULL;
+
+
+    curr = first;
+
+    while (curr != NULL && curr -> data != val)
+    {
+        curr = curr -> rptr;
+    }
+
+    if (curr == NULL)
+    {
+        printf("\n value doesn't exsit");
+        return;
+    }
+    
+    new -> lptr = curr;
+    new -> rptr = curr -> rptr;
+    curr -> rptr = new;
+
+    if (curr -> rptr != NULL)
+    {
+        new -> rptr -> lptr = new;
+    }
+}
