@@ -259,4 +259,6 @@ void insaft(int val)
     {
         new -> rptr -> lptr = new;
     }
+
+    curr = first;
 }
