@@ -29,6 +29,7 @@ int main()
         printf("\n 3. insert at beginig");
         printf("\n 4. insert at end");
         printf("\n 5. insert after");
+        printf()
         printf("\n 6. delete");
         printf("\n 7. Exsit");
         printf("\n|--------------------|");
